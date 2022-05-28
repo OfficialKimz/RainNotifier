@@ -1,7 +1,6 @@
 import json, os, time, requests
 from bs4 import BeautifulSoup
 from selenium import webdriver
-from win10toast import ToastNotifier
 from zipfile import *
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
@@ -34,7 +33,7 @@ if not os.path.exists("chromedriver.exe"):
     zip.close()
     os.remove("chromedriver.zip")
 
-toast = ToastNotifier()
+
 options = Options()
 if headless == "True":
   options.headless = True
@@ -76,7 +75,6 @@ while True:
           else:
             time.sleep(130)
           if winnotif == "True":
-            toast.show_toast("Bloxflip Rain!", f"Rain amount: {prize} R$\nExpiration: {duration} minutes\nHost: {host}\n\n", icon_path="logo.ico", duration=10)
           time.sleep(waiting)
       elif check['active'] == False:
         time.sleep(refresh)

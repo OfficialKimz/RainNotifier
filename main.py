@@ -25,12 +25,12 @@ if webhook_enable == "True":
 
 if not os.path.exists("chromedriver.exe"):
   version = requests.get("https://chromedriver.storage.googleapis.com/LATEST_RELEASE").text
-  download = requests.get(f"https://chromedriver.storage.googleapis.com/{version}/chromedriver_win32.zip")
+  download = requests.get(f"https://chromedriver.storage.googleapis.com/{version}/chromedriver_linux64.zip")
   with open("chromedriver.zip", "wb") as zip:
     zip.write(download.content)
 
   with ZipFile("chromedriver.zip", "r") as zip:
-    zip.extract("chromedriver.exe")
+    zip.extract("chromedriver")
     zip.close()
     os.remove("chromedriver.zip")
 
@@ -40,7 +40,7 @@ if headless == "True":
   options.headless = True
 options.add_argument("window-size=200,500")
 options.add_experimental_option("excludeSwitches", ["enable-logging"])
-driver = webdriver.Chrome(service=Service('chromedriver.exe'), options=options)
+driver = webdriver.Chrome(service=Service('chromedriver'), options=options)
 driver.implicitly_wait(10)
 
 while True:
